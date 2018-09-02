@@ -1,0 +1,86 @@
+body {
+    background-image: url(../images/stardust.png);
+}
+
+/* .jumbotron-fluid {
+    background-image: url(../images/bg2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 3px solid white;
+}
+
+.display-4 {
+    color: white;
+}
+
+.lead {
+    color: white;
+}
+
+.containerBody {
+    width: 1000px;
+}
+
+#yourChar,
+#enemy,
+#fight,
+#defender {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.row1,
+.row2,
+.row3,
+.row4,
+.row5,
+.row6,
+.row7,
+.row8 {
+    border: 2px solid grey;
+}
+
+.row1,
+.row3,
+.row7 {
+    height: 180px;
+}
+*/
+
+#obiwan,
+#luke,
+#sidious,
+#maul {
+    width: 150px;
+    height: auto;
+
+}
+
+.char,
+.enemies,
+.yourCharChoice,
+.yourDefChoice {
+    background-color: white;
+    text-align: center;
+    margin: 2px;
+    width: 180px;
+    float: left;
+    color: black;
+} 
+
+.header,
+.CharAvailable,
+.yourChar,
+.selectedChar,
+.enemyHeader,
+.enemyChar,
+.fightSection,
+.defender,
+.defenderChar,
+.script {
+    float: left;
+    clear: both;
+    color: white;
+}
+
