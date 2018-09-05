@@ -1,8 +1,5 @@
 // BUGS:
-// 1) when I try to select another game during game, the enemy HP
-//    doesb't go down anymore
-// 2) it would always end up dying -> move the code around?
-// 3) NOT BUGS -> need to edit css
+// 1) NOT BUGS -> need to edit css
 
 $(document).ready( function() {
 
@@ -219,9 +216,16 @@ $(document).ready( function() {
                 // console.log(enemyHP);
                 // console.log(enemyDamagePow);
             }
+
+            if($(".selectedChar").is(':empty')) {
+                $(".script").text("You can restart the game.");
+            }
+
+            else {
+                $(".script").text("Begin to attack!");
+            }
         })
     }
-
 
     $("#attackButton").click( function() {
         if(charSelected && enemySelected) {
@@ -231,8 +235,18 @@ $(document).ready( function() {
                 // attacking game
                 console.log(yourCharacter.text());
                 charAttackPow = charAttackPow + 8;
-                charNewHP = charHP - enemyDamagePow;
                 enemyNewHP = enemyHP - charAttackPow;
+
+                if (enemyNewHP <= 0) {
+
+                    $(".script").text("YOU WIN!");
+                    $(".yourDefender").empty();
+                    enemySelected = false;
+                }
+                else {
+                    charNewHP = charHP - enemyDamagePow;
+                }
+                
 
                 $(".char").html(yourCharacter.html().replace(charHP.toString(), charNewHP.toString()));
                 $(".attacker").html(yourAttacker.html().replace(enemyHP.toString(), enemyNewHP.toString()));
@@ -243,23 +257,30 @@ $(document).ready( function() {
                 $(".script").text("Your attacked " + enemyName + " for " + charAttackPow + " damage.");
                 $(".script").append("<br>" + enemyName + " attacked you for "+ enemyDamagePow + " damage. <br>");
             }
-            else if (charHP >= 0 && enemyHP <= 0) {
-                $(".script").text("YOU WIN!");
+            if (charHP >= 0 && enemyHP <= 0) {
+                $(".script").text("You have defeated " + enemyName + " !");
                 $(".yourDefender").empty();
                 enemySelected = false;
             }
             else if (charHP <= 0 && enemyHP > 0) {
-                $(".script").text("YOU LOSE!");
+                // $(".script").text("YOU LOSE!");
                 $(".selectedChar").empty();
-                restartButton.show();
+                // restartButton.show();
             }
         }
-
         else {
             // alert("You need to select a character!");
-            $(".script").text("You need to select a defender!");
+            $(".script").text("No defender available.");
         }
-    
+
+        if($(".enemyselected").is(':empty') && ($(".yourDefender").is(':empty'))) {
+            $(".script").text("You won! You have defeated all the enemies!");
+            restartButton.show();
+        }
+        else if ($(".selectedChar").is(':empty')) {
+            $(".script").text("You lost. You can restart the game.");
+            restartButton.show();
+        }
     })
 
     restartButton.click( function() {
@@ -290,6 +311,5 @@ $(document).ready( function() {
     })
 
     starWarsRPG();
-
 
 })
