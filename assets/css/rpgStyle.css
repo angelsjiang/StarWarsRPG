@@ -22,3 +22,11 @@ div {
 #maul {
     width: 100%;
 }
+
+button {
+    padding: 5px;
+    background-color: white;
+    color: #3F7FBF;
+    font-weight: bold;
+    font-size: 18px;
+}

@@ -261,28 +261,30 @@ $(document).ready( function() {
                 $(".script").append("<br>" + enemyName + " attacked you for "+ enemyDamagePow + " damage. <br>");
             }
             if (charHP >= 0 && enemyHP <= 0) {
-                $(".script").text("You have defeated " + enemyName + " !");
+                $(".script").text("You have defeated " + enemyName + "! Please select another defender to continue.");
                 $(".yourDefender").empty();
                 enemySelected = false;
+                
+                if ($(".enemyselected").is(':empty') && ($(".yourDefender").is(':empty'))) {
+                    $(".script").text("You won! You have defeated all the enemies!");
+                    restartButton.show();
+                }
             }
             else if (charHP <= 0 && enemyHP > 0) {
                 // $(".script").text("YOU LOSE!");
                 $(".selectedChar").empty();
                 // restartButton.show();
+                $(".script").text("You lost. You can restart the game.");
+                restartButton.show();
             }
         }
-        else {
+
+        else if (!charSelected && !enemySelected) {
+            $(".script").text("No character and defender selected.");
+        }
+        else if (!enemySelected) {
             // alert("You need to select a character!");
             $(".script").text("No defender available.");
-        }
-
-        if($(".enemyselected").is(':empty') && ($(".yourDefender").is(':empty'))) {
-            $(".script").text("You won! You have defeated all the enemies!");
-            restartButton.show();
-        }
-        else if ($(".selectedChar").is(':empty')) {
-            $(".script").text("You lost. You can restart the game.");
-            restartButton.show();
         }
     })
 
