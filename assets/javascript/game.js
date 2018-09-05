@@ -106,11 +106,14 @@ $(document).ready( function() {
         $(".maulBlock").append(maulHP);
     
 
+        $(".script").text("You can choose a character to begin.");
+
         $(document).on("click", ".char", function() {
             // choose your character
             if(!charSelected) {
                 yourCharacter = $(this);
                 $(".selectedChar").append(yourCharacter);
+                $(".script").text("Please select an enemy to begin attack.");
             }
             else {
                 // alert("You have already selected a character!");
